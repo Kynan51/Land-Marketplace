@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Details</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <%- include ("_header.ejs") %>
+    <main>
+        <% if(locals.message){ %>
+            <h1><%= message %></h1>
+        <% }else{ %> 
+        <section class="land-info">
+            <div id="property-list" class="property-list">
+                <% listings.forEach(property_card=>{  %>
+                    <div class="property-card">
+                        <img src="<%= property_card.image_url %>" alt="Property Image">
+                        <a href="/listing?place=<%= property_card.location %>">
+                            <h3><%= property_card.location %></h3>
+                        </a>
+                        <p>Size: <%= property_card.size_acres %></p>
+                        <p>Price: <%= property_card.price %></p>
+                        <p>Status: <%= property_card.for_sale == 0?"sold":"for sale" %></p>
+                        <p>Agent's Name: <%= property_card.full_name %> </p> 
+                        <p>Agent's No: <%= property_card.phone_number %></p>
+                    </div>
+                <% }) %>
+        </section>  
+
+    </main>
+    <%- include ("_footer.ejs") %>
+</body>
+</html>

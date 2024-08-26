@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
 }
+a{
+    text-decoration: none;
+    color: rgb(34, 34, 184);
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -183,6 +187,7 @@ header nav ul li a {
 }
 #contact .agent{
     padding: 15px;
+    margin: 50px 50px 5px 1px;
 }
 #contact .agent p{
     display: flex;
