@@ -8,8 +8,15 @@ const dbconnection = mysql.createConnection({
     database: "landmarketplace"
 })
 
-const app = express()
-app.use(express.static("public")) // static files
+
+const app = express();
+
+app.use(express.static("public")); // middleware --- app.use(func) - func will executed on every request
+app.use(express.urlencoded({extended: true})) // express urlencoded
+app.use((req,res, next)=>{
+  console.log("Middleware Function") // authorization -- block some route 
+  next() 
+})
 app.get("/", (req,res)=>{
     // home page/route/path
     res.render("home.ejs");
@@ -18,13 +25,12 @@ app.get("/", (req,res)=>{
 app.get("/listings", (req,res)=>{
     // all listings route
     
-    dbconnection.query("SELECT * FROM land_properties LEFT JOIN property_images ON land_properties.property_id = property_images.property_id", (sqlErr, listings)=>{
+    dbconnection.query("SELECT * FROM land_properties JOIN land_images ON land_properties.property_image = land_images.image_id", (sqlErr, listings)=>{
         if(sqlErr){
-            console.log(sqlErr);
+            res.status(500).render("500.ejs")
             
-            res.send("Server Error!!")
         }else{
-            console.log(listings);
+            
             res.render("listings.ejs", {listings})
         }
     })
@@ -33,14 +39,22 @@ app.get("/listings", (req,res)=>{
 
 app.get("/listing", (req,res)=>{
     // single listing route
+    const propertyId = req.params.id;
+    const query = `
+        SELECT * FROM land_properties 
+        JOIN land_images 
+        ON land_properties.property_image = land_images.image_id 
+        WHERE land_properties.id = ?`;
     
-    dbconnection.query("SELECT * FROM land_properties LEFT JOIN property_images ON land_properties.property_id = property_images.property_id JOIN agent_id ON land_properties.agent_id = agents.agent_id ", (sqlErr, listing)=>{
+    dbconnection.query("SELECT * FROM land_properties JOIN land_images ON land_properties.property_image = land_images.image_id ", (sqlErr, listing)=>{
         if(sqlErr){
-            console.log(sqlErr);
-            
-            res.send("Server Error!!")
+            res.status(500).render("500.ejs")
+        }
+        if (results.length > 0) {
+            const property = results[0]; // Fetch the first result
+            res.render('listing', { property: property });
         }else{
-            console.log(listing);
+            
             res.render("listing.ejs", {listing})
         }
     })

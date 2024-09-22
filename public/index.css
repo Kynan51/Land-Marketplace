@@ -4,7 +4,7 @@
 }
 a{
     text-decoration: none;
-    color: rgb(34, 34, 184);
+    color: rgb(0, 0, 0);
 }
 body {
     font-family: Arial, sans-serif;
@@ -52,15 +52,61 @@ header nav ul li a {
 
 .katikati {
     background-color: #2E8B57;
-    color: white;
-    padding: 50px 20px;
+    color: #000000;
+    padding: 150px 50px;
     text-align: center;
+    background-image: url(./images/kentucky+farm+-+web+header.jpg);
+    background-color: rgba(152, 201, 152, 0.852); /* Light green with 50% opacity */
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
 }
 
 .katikati h2 {
     margin-top: 0;
     font-size: 2.5em;
+    color: #2E8B57;
 }
+
+.image-description-container {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    height: 350px;
+    border-radius: 8px;
+    border: 2px;
+    border-color: #4CAF50;
+    background-color: #4592a03b;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.row-reverse {
+    flex-direction: row-reverse;
+}
+
+
+.image-description-container img {
+    max-width: 50%;
+    margin: 0 20px;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.description {
+    max-width: 40%;
+}
+
+.description h2 {
+    margin-bottom: 10px;
+}
+
+.description p {
+    line-height: 1.5;
+}
+
 
 #listings {
     padding: 20px;
