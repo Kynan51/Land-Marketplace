@@ -9,9 +9,36 @@
 <body>
     <%- include ("_header.ejs") %>
     <main>
-        <h1>404 - Page Not Found</h1>
-        <p>The page you are looking for was not found. Click <a href="/">here</a> to access the home page</p>
+        <div class="error">
+            <div class="heading1">
+                <h1>404 - Page Not Found</h1>
+            </div>
+            <br>
+            <div class="para1">
+                <p></p>
+            </div>
+        </div>
+        
     </main>
+    <style>
+        main{
+            display: flex;
+            width: 100%;
+        }
+        .error{
+            background-image: url("./images/404-error-with-landscape-concept-illustration_114360-7898.avif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 780px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        h1{
+            color: rgb(10, 96, 67);
+        }
+    </style>
 
     <%- include ("_footer.ejs") %>
 </body>
