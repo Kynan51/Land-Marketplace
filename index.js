@@ -47,7 +47,9 @@ app.get("/listing/:id", (req, res) => {
         SELECT * FROM land_properties 
         JOIN land_images 
         ON land_properties.property_image = land_images.image_id 
-        WHERE land_properties.land_id = ?`; 
+        WHERE land_properties.land_id = ?
+        JOIN agents
+        ON land_properties.agent_id = agents.agent_id`; 
     
     dbconnection.query(query, [propertyId], (sqlErr, listing) => { 
         if (sqlErr) {
